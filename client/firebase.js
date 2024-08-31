@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBDE0Ek_OjV419BAiB8iOL20gNlehuR-4U",
-  authDomain: "drawify-e45d5.firebaseapp.com",
+  authDomain: "https://drawify-dun.vercel.app",
   projectId: "drawify-e45d5",
   storageBucket: "drawify-e45d5.appspot.com",
   messagingSenderId: "734128889302",
