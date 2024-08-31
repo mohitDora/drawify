@@ -10,7 +10,7 @@ const cors = require("cors");
 
 const app = express();
 const isDev = process.env.NODE_ENV === "development";
-const URL = isDev ? "http://localhost:3000" : "https://sketchbook-sigma.vercel.app";
+const URL = isDev ? "http://localhost:3000" : "https://drawify-dun.vercel.app";
 
 // CORS options
 const corsOptions = {
@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
 });
 
 // Connect to the database and start the server
-const PORT = isDev? 5000:""
+const PORT = isDev? 5000:"https://drawify-yttj.vercel.app"
 connectDB().then(() => {
   httpServer.listen(PORT, () => {
     console.log(`Server running at ${PORT}`);
