@@ -2,12 +2,14 @@
 import Navbar from "@/components/shared/Navbar";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/AuthContext";
+import { LoginLink, RegisterLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const {user} = useKindeBrowserClient();
   const router = useRouter();
   useEffect(() => {
     if (user) {
@@ -23,14 +25,18 @@ export default function Home() {
         </h1>
 
         <div className="flex gap-4">
-          <Link href="/signup">
+          {/* <Link href="/signup"> */}
+          <RegisterLink>
             <Button>Start Drawifing</Button>
-          </Link>
-          <Link href="/login">
+          </RegisterLink>
+          {/* </Link> */}
+          {/* <Link href="/login"> */}
+          <LoginLink>
             <Button variant="outline" className="border-pr">
               Log In
             </Button>
-          </Link>
+          </LoginLink>
+          {/* </Link> */}
         </div>
       </div>
     </>

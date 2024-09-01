@@ -8,10 +8,12 @@ import { useAuth } from "@/hooks/AuthContext";
 import { createBoard, fetchBoards } from "@/lib/ApiFunction";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
+import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
 
 function page() {
+  const {user} = useKindeBrowserClient();
+console.log(user)
   const router = useRouter();
-  const { user } = useAuth();
   const [boards, setBoards] = useState([]);
 
   const handleLogout = async () => {
@@ -26,12 +28,12 @@ function page() {
   };
 
   const createBoardFunc = async () => {
-    if (user?.uid) {
+    if (user?.id) {
       try {
         await createBoard({
           title: "Untitled",
-          createdBy: user?.uid,
-          users: [user.uid],
+          createdBy: user?.id,
+          users: [user.id],
         });
         toast("Board created");
         fetchAndSetBoards();
@@ -43,9 +45,9 @@ function page() {
   };
   
   const fetchAndSetBoards = async () => {
-    if (user?.uid) {
+    if (user?.id) {
       try {
-        const boardsData = await fetchBoards(user?.uid);
+        const boardsData = await fetchBoards(user?.id);
         setBoards(boardsData);
       } catch (error) {
         console.error("Error fetching boards:", error);
@@ -71,7 +73,8 @@ function page() {
   });
   return (
     <div>
-      <h1>{user?.displayName}</h1>
+      <h1>{user?.given_name+" "+user?.family_name}</h1>
+      
       {_boards?.length>0 ? _boards : "Empty"}
       <Button onClick={createBoardFunc}>Create</Button>
       <Button onClick={handleLogout}>Logout</Button>

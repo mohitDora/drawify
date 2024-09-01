@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'sonner';
 
-const API_URL = process.env.NODE_ENV==="development"?'http://localhost:5000/api':"https://drawify-yttj.vercel.app"
+const API_URL = process.env.BASE_URL+"/api"
 
 // User API Calls
 
