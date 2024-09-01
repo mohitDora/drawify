@@ -10,6 +10,7 @@ const BoardPage = () => {
   const { boardId } = useParams();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     if (isAuthenticated === false) {
@@ -20,7 +21,7 @@ const BoardPage = () => {
       addUserToBoard(boardId, user.id);
       setLoading(false);
     }
-  }, [isAuthenticated, user, boardId, router]);
+  }, [isAuthenticated]);
 
   if (loading || !isAuthenticated || !user) {
     return <p>Loading...</p>;
