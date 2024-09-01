@@ -29,7 +29,7 @@ const BoardPage = () => {
 
   return (
     <div>
-      <p>{user.given_name + " " + user.family_name}</p>
+      <p>{user?.given_name + " " + user?.family_name}</p>
       <h1>Board: {boardId}</h1>
       <Canvas boardId={boardId} />
     </div>
