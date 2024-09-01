@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { createBoard, fetchBoards } from "@/lib/ApiFunction";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
+import {LogoutLink, useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
 
 function page() {
   const {user} = useKindeBrowserClient();
@@ -74,7 +74,9 @@ console.log(user)
       
       {_boards?.length>0 ? _boards : "Empty"}
       <Button onClick={createBoardFunc}>Create</Button>
+      <LogoutLink>
       <Button onClick={handleLogout}>Logout</Button>
+      </LogoutLink>
     </div>
   );
 }
