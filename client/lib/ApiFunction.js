@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { toast } from 'sonner';
 
-const API_URL = process.env.BASE_URL
-
-// User API Calls
+const API_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 export const registerUser = async (userData) => {
   try {
