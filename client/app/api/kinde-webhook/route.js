@@ -30,7 +30,8 @@ export async function POST(req) {
             given_name: event?.data?.user?.first_name,
             email: event?.data?.user?.email,
           };
-          registerUser({
+          console.log("Entered")
+          await registerUser({
             _id: data?.id,
             name: data?.given_name + " " + data?.family_name,
             email: data?.email,
