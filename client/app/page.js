@@ -1,14 +1,11 @@
 "use client";
 import Navbar from "@/components/shared/Navbar";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/hooks/AuthContext";
 import { LoginLink, RegisterLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Home() {
-  // const { user } = useAuth();
   const {user} = useKindeBrowserClient();
   const router = useRouter();
   useEffect(() => {
@@ -25,18 +22,14 @@ export default function Home() {
         </h1>
 
         <div className="flex gap-4">
-          {/* <Link href="/signup"> */}
           <RegisterLink>
             <Button>Start Drawifing</Button>
           </RegisterLink>
-          {/* </Link> */}
-          {/* <Link href="/login"> */}
           <LoginLink>
             <Button variant="outline" className="border-pr">
               Log In
             </Button>
           </LoginLink>
-          {/* </Link> */}
         </div>
       </div>
     </>
