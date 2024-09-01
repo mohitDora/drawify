@@ -21,7 +21,7 @@ const BoardPage = () => {
       addUserToBoard(boardId, user.id);
       setLoading(false);
     }
-  }, [isAuthenticated]);
+  }, []);
 
   if (loading || !isAuthenticated || !user) {
     return <p>Loading...</p>;
