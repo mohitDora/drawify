@@ -9,12 +9,11 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 
 const app = express();
-const isDev = process.env.NODE_ENV === "development";
-const URL = isDev ? "http://localhost:3000" : "https://drawify-dun.vercel.app";
+const URL = process.env.FRONT
 
 // CORS options
 const corsOptions = {
-  origin: [URL],
+  origin: "*",
   methods: "POST,GET,PUT,DELETE,HEAD,PATCH",
   credentials: true,
 };
@@ -32,7 +31,7 @@ app.use("/api/boards", boardRoutes);
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: URL,
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -64,8 +63,9 @@ io.on("connection", (socket) => {
   });
 });
 
+console.log(process.env.BACK)
 // Connect to the database and start the server
-const PORT = isDev? 5000:"https://drawify-yttj.vercel.app"
+const PORT = process.env.BACK
 connectDB().then(() => {
   httpServer.listen(PORT, () => {
     console.log(`Server running at ${PORT}`);
