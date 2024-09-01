@@ -1,30 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { logOut } from "@//lib/firebaseAuth";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { createBoard, fetchBoards } from "@/lib/ApiFunction";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import {LogoutLink, useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
+import {
+  LogoutLink,
+  useKindeBrowserClient,
+} from "@kinde-oss/kinde-auth-nextjs";
 
 function page() {
-  const {user} = useKindeBrowserClient();
-console.log(user)
-  const router = useRouter();
+  const { user } = useKindeBrowserClient();
+  console.log(user);
   const [boards, setBoards] = useState([]);
-
-  const handleLogout = async () => {
-    try {
-      await logOut();
-      router.push("/");
-      toast("Logout Successful");
-    } catch (error) {
-      console.error(error);
-      toast("Server error");
-    }
-  };
 
   const createBoardFunc = async () => {
     if (user?.id) {
@@ -42,7 +31,7 @@ console.log(user)
       }
     }
   };
-  
+
   const fetchAndSetBoards = async () => {
     if (user?.id) {
       try {
@@ -61,7 +50,7 @@ console.log(user)
   const _boards = boards?.map((item, index) => {
     return (
       <Link href={`/board/${item._id}`} key={item?._id}>
-        <div >
+        <div>
           {item?.title}
           {item?.createdBy}
         </div>
@@ -70,12 +59,12 @@ console.log(user)
   });
   return (
     <div>
-      <h1>{user?.given_name+" "+user?.family_name}</h1>
-      
-      {_boards?.length>0 ? _boards : "Empty"}
+      <h1>{user?.given_name + " " + user?.family_name}</h1>
+
+      {_boards?.length > 0 ? _boards : "Empty"}
       <Button onClick={createBoardFunc}>Create</Button>
       <LogoutLink>
-      <Button onClick={handleLogout}>Logout</Button>
+        <Button>Logout</Button>
       </LogoutLink>
     </div>
   );
