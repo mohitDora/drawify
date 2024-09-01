@@ -64,6 +64,10 @@ io.on("connection", (socket) => {
   });
 });
 
+app.get("/",(req,res)=>{
+  res.send("Hello")
+})
+
 console.log(process.env.BACK);
 // Connect to the database and start the server
 const PORT = process.env.BACK;
