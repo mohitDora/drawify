@@ -12,13 +12,12 @@ const BoardPage = () => {
 
   useEffect(() => {
     if (!user) {
-      addUserToBoard(boardId, user?.id);
-      redirect(`/api/auth/login?post_login_redirect_url=/board/${boardId}`)
-      
+      router.push('/api/auth/login')
+      // addUserToBoard(boardId, user?.id);
     } else {
       addUserToBoard(boardId, user?.id);
     }
-  }, [user]);
+  }, [user, boardId, router]);
 
   if (!user) {
     return <p>Loading...</p>;
