@@ -9,7 +9,6 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 
 const app = express();
-const URL = process.env.FRONT;
 
 // CORS options
 const corsOptions = {
