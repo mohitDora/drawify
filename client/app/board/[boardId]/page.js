@@ -17,7 +17,7 @@ const BoardPage = () => {
     } else {
       addUserToBoard(boardId, user?.id);
     }
-  }, [user, boardId, router]);
+  }, [user]);
 
   if (!user) {
     return <p>Loading...</p>;
