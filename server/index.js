@@ -13,7 +13,7 @@ const URL = process.env.FRONT;
 
 // CORS options
 const corsOptions = {
-  origin: "*",
+  origin: "https://drawify-dun.vercel.app",
   methods: "POST,GET,PUT,DELETE,HEAD,PATCH",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
@@ -32,7 +32,7 @@ app.use("/api/boards", boardRoutes);
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "*",
+    origin: "https://drawify-dun.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -70,7 +70,7 @@ app.get("/",(req,res)=>{
 
 console.log(process.env.BACK);
 // Connect to the database and start the server
-const PORT = process.env.BACK;
+const PORT = "https://drawify-yttj.vercel.app";
 connectDB().then(() => {
   httpServer.listen(PORT, () => {
     console.log(`Server running at ${PORT}`);
