@@ -3,24 +3,26 @@ import Canvas from "@/components/shared/Canvas";
 import { addUserToBoard } from "@/lib/ApiFunction";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const BoardPage = () => {
   const { user, isAuthenticated } = useKindeBrowserClient();
   const { boardId } = useParams();
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      // Redirect to login and ensure the user comes back to the board page after login
+    if (isAuthenticated === false) {
+      // Redirect to login if not authenticated
       router.push(`/api/auth/login?post_login_redirect_url=/board/${boardId}`);
-    } else if (user) {
-      // Add user to board only after ensuring they are authenticated
+    } else if (isAuthenticated && user) {
+      // Add user to board and stop loading once authenticated
       addUserToBoard(boardId, user.id);
+      setLoading(false);
     }
   }, [isAuthenticated, user, boardId, router]);
 
-  if (!isAuthenticated || !user) {
+  if (loading || !isAuthenticated || !user) {
     return <p>Loading...</p>;
   }
 
