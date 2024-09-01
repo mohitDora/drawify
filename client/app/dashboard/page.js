@@ -1,10 +1,9 @@
 "use client";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { logOut } from "@//lib/firebaseAuth";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { useAuth } from "@/hooks/AuthContext";
 import { createBoard, fetchBoards } from "@/lib/ApiFunction";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
@@ -51,7 +50,6 @@ console.log(user)
         setBoards(boardsData);
       } catch (error) {
         console.error("Error fetching boards:", error);
-        // Handle error if needed
       }
     }
   };
@@ -61,7 +59,6 @@ console.log(user)
   }, [user]);
 
   const _boards = boards?.map((item, index) => {
-    // console.log("item",item)
     return (
       <Link href={`/board/${item._id}`} key={item?._id}>
         <div >
