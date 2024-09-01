@@ -12,20 +12,20 @@ const BoardPage = () => {
   const [loading, setLoading] = useState(true);
   
 
-  useEffect(() => {
-    if (isAuthenticated === false) {
-      // Redirect to login if not authenticated
-      router.push(`/api/auth/login?post_login_redirect_url=/board/${boardId}`);
-    } else if (isAuthenticated && user) {
-      // Add user to board and stop loading once authenticated
-      addUserToBoard(boardId, user.id);
-      setLoading(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (isAuthenticated === false) {
+  //     // Redirect to login if not authenticated
+  //     router.push(`/api/auth/login?post_login_redirect_url=/board/${boardId}`);
+  //   } else if (isAuthenticated && user) {
+  //     // Add user to board and stop loading once authenticated
+  //     addUserToBoard(boardId, user.id);
+  //     setLoading(false);
+  //   }
+  // }, []);
 
-  if (loading || !isAuthenticated || !user) {
-    return <p>Loading...</p>;
-  }
+  // if (loading || !isAuthenticated || !user) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <div>
