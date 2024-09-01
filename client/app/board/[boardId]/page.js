@@ -12,8 +12,9 @@ const BoardPage = () => {
 
   useEffect(() => {
     if (!user) {
-      redirect(`/api/auth/login?post_login_redirect_url=/board/${boardId}`)
       addUserToBoard(boardId, user?.id);
+      redirect(`/api/auth/login?post_login_redirect_url=/board/${boardId}`)
+      
     } else {
       addUserToBoard(boardId, user?.id);
     }
