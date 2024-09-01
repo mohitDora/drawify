@@ -2,7 +2,7 @@
 import Canvas from "@/components/shared/Canvas";
 import { addUserToBoard } from "@/lib/ApiFunction";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { useParams, useRouter } from "next/navigation";
+import { redirect, useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const BoardPage = () => {
@@ -12,11 +12,7 @@ const BoardPage = () => {
 
   useEffect(() => {
     if (!user) {
-      const kindeIssuerUrl = process.env.KINDE_ISSUER_URL;
-      const clientId = process.env.KINDE_CLIENT_ID;
-      const redirectUri = process.env.KINDE_REDIRECT_URI;
-      const loginUrl = `${kindeIssuerUrl}/oauth2/auth?client_id=${clientId}&response_type=code&scope=openid profile email&redirect_uri=${redirectUri}`;
-      window.location.href = loginUrl;
+      redirect(`/api/auth/login?post_login_redirect_url=/board/${boardId}`)
       addUserToBoard(boardId, user?.id);
     } else {
       addUserToBoard(boardId, user?.id);
