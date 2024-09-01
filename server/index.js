@@ -9,13 +9,14 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 
 const app = express();
-const URL = process.env.FRONT
+const URL = process.env.FRONT;
 
 // CORS options
 const corsOptions = {
   origin: "*",
   methods: "POST,GET,PUT,DELETE,HEAD,PATCH",
-  credentials: true,
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
 };
 
 // Middleware
@@ -63,9 +64,9 @@ io.on("connection", (socket) => {
   });
 });
 
-console.log(process.env.BACK)
+console.log(process.env.BACK);
 // Connect to the database and start the server
-const PORT = process.env.BACK
+const PORT = process.env.BACK;
 connectDB().then(() => {
   httpServer.listen(PORT, () => {
     console.log(`Server running at ${PORT}`);
